@@ -16,7 +16,7 @@ Generar un PDF **A4** legible y predecible a partir del HTML producido por `mark
    - lanzar browser (reutilizar instancia con lock)
    - `page.set_content(full_html, wait_until="networkidle")`
    - `page.pdf(**opciones)`
-5. Devolver `bytes` al cliente y guardar copia en `output/`
+5. Devolver `bytes` al cliente (descarga en el navegador). Copia en `output/` **solo** si `SAVE_TO_OUTPUT=1`
 
 ## Opciones Playwright previstas
 
@@ -63,7 +63,7 @@ El preview del frontend debería cargar el mismo CSS para acercar WYSIWYG.
 | `server/services/markdown_service.py` | HTML fragment |
 | `server/templates/document.html` | Envoltorio |
 | `shared/pdf-theme.css` | Estilos de impresión |
-| `output/` | Copias opcionales |
+| `output/` | Copias opcionales solo con `SAVE_TO_OUTPUT=1` |
 
 ## Rendimiento local
 

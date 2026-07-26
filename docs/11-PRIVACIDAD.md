@@ -28,6 +28,7 @@ Minimizar salida de datos a internet al usar MD-PDF. El diseño es **local**: Ma
 - **Sin favicon remoto** ni archivo favicon: icono vacío en data URI (no pide `/favicon.ico` a la red)
 - **Aviso** si el Markdown contiene URLs remotas (`http://` / `https://`) en imágenes o enlaces que puedan disparar red al exportar
 - **Aviso** tras importar PDF: conversión con pérdida (no es OCR cloud)
+- **Generar Markdown** descarga el `.md` en el navegador (sin subir a un servidor cloud)
 - Preview del documento en Shadow DOM local; el PDF importado se ve con blob `blob:` en el navegador (no se reenvía a terceros)
 - Sin ejecutar scripts del HTML del documento
 

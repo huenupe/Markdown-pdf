@@ -20,7 +20,7 @@ flowchart LR
 2. UI en **modo PDF**: izquierda = PDF original (blob), derecha = Markdown (Editar/Ver)
 3. Frontend: `POST /api/import-pdf` (multipart)
 4. Backend: PyMuPDF + pymupdf4llm → Markdown
-5. Texto en el editor; aviso de pérdida
+5. Texto en el editor; aviso de pérdida; CTA visible: **Generar Markdown** (no Generar PDF)
 6. “Vista PDF” HTML del modo Markdown no se muestra en este layout (solo PDF | MD)
 
 ## Dependencias (`.venv`)
@@ -76,7 +76,7 @@ Ver [04-API](./04-API.md) — `POST /api/import-pdf`.
 
 ## Descarga del Markdown
 
-Tras importar, el texto queda en el editor. Con **Descargar .md** se guarda un archivo local (mismo nombre base que el PDF o el `.md` sugerido por la API). No requiere un endpoint nuevo: es descarga en el navegador.
+Tras importar, el texto queda en el editor. Con **Generar Markdown** se descarga un `.md` local (nombre base del PDF o el sugerido por la API). No requiere un endpoint nuevo: es descarga en el navegador.
 
 ## Fuera de alcance (esta entrega)
 

@@ -113,8 +113,9 @@ Mismos campos + `theme` (convert-file: form field `theme` opcional).
 
 - Selector de plantilla en la toolbar
 - Enviar `theme` en preview/convert
-- Cargar CSS del tema elegido para el iframe
-- Atajos existentes se mantienen (`Ctrl+Enter`, `Ctrl+O`)
+- Cargar CSS del tema en el **Shadow DOM** del preview (no iframe `srcdoc`)
+- Atajos: `Ctrl+Enter` (Generar PDF), `Ctrl+O` (Abrir Markdown)
+- Estado actual de la UI (modos MD/PDF, CTAs): ver [05-FRONTEND](./05-FRONTEND.md)
 
 ## Criterio de hecho
 

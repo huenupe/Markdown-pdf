@@ -55,7 +55,7 @@ flowchart LR
 
 ### Convertir a PDF
 
-1. Usuario pulsa “Generar PDF”
+1. Usuario pulsa **Generar PDF** (solo en modo Markdown)
 2. Frontend envía Markdown (+ nombre opcional) a `POST /api/convert`
 3. Backend: Markdown → HTML → plantilla → Playwright → bytes PDF
 4. Frontend descarga el blob como `.pdf`
@@ -66,9 +66,9 @@ flowchart LR
 2. UI pasa a **modo PDF**: izquierda = PDF original (blob local), derecha = Markdown
 3. Frontend: `POST /api/import-pdf`
 4. Backend: bytes PDF → Markdown (PyMuPDF / pymupdf4llm)
-5. Editor a la derecha; aviso de conversión con pérdida; toggle Editar/Ver
+5. Editor a la derecha; aviso de pérdida; CTA **Generar Markdown** (oculta Generar PDF)
 
-Con **Abrir .md**, la UI usa **modo Markdown**: izquierda = Markdown (Editar/Ver), derecha = “Vista PDF” (hoja HTML con plantilla). El PDF binario de descarga sigue saliendo de Playwright al pulsar Generar PDF.
+Con **Abrir Markdown**, la UI usa **modo Markdown**: izquierda = Markdown (Editar/Ver), derecha = “Vista PDF” (hoja HTML); CTA **Generar PDF**.
 
 El **preview puede ser rápido**; la **fuente de verdad del PDF descargado es el backend**. Detalle del import: [12-PDF-TO-MD](./12-PDF-TO-MD.md). UI: [05-FRONTEND](./05-FRONTEND.md).
 

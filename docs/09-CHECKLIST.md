@@ -30,8 +30,8 @@ Docs: [01-STACK](./01-STACK.md), [02-ARQUITECTURA](./02-ARQUITECTURA.md), [03-SE
 - [x] `requirements.txt` + `.venv` creado
 - [x] Dependencias instaladas **solo** en `.venv`
 - [x] `.gitignore` (incluye `.venv/`, `output/`, etc.)
-- [x] `GET /api/health` responde en `127.0.0.1:8000`
-- [x] UI estática placeholder en `http://localhost:8000`
+- [x] `GET /api/health` responde (histórico Fase 1: `:8000`; **hoy default `:8765`** vía `run.py`)
+- [x] UI estática en la raíz (histórico `:8000`; **hoy** `http://127.0.0.1:8765`)
 - [x] Script de arranque `scripts/dev.ps1` / `scripts/dev.sh`
 - [x] Actualizar [03-SETUP](./03-SETUP.md) si los comandos reales difieren
 
@@ -79,7 +79,7 @@ Docs: [07-PDF](./07-PDF.md), [06-MARKDOWN](./06-MARKDOWN.md)
 - [x] Márgenes A4 + `print_background`
 - [x] Numeración de páginas
 - [x] Fixtures `simple`, `code-and-tables`, `with-images`
-- [x] Preview visualmente cercano al PDF (hoja A4 en iframe)
+- [x] Preview visualmente cercano al PDF (hoja A4; hoy **Shadow DOM**, no iframe `srcdoc`)
 - [x] Script `scripts/render_fixtures.ps1`
 
 **Salida:** fixtures OK.
@@ -134,7 +134,7 @@ Docs: [12-PDF-TO-MD](./12-PDF-TO-MD.md), [04-API](./04-API.md), [05-FRONTEND](./
 - [x] Límite 15 MB PDF (separado del 2 MB Markdown)
 - [x] Error 422 claro si no hay texto extraíble
 - [x] Smoke: convert → import-pdf → markdown no vacío
-- [x] Docs (00–05, 08, 09, 11, 12, README) alineados
+- [x] Docs (00–12, README) alineados con CTAs y flujos actuales
 
 ---
 
@@ -147,8 +147,9 @@ Docs: [05-FRONTEND](./05-FRONTEND.md)
 - [x] Modo MD: Markdown | Vista PDF (hoja HTML)
 - [x] Modo PDF: PDF original | Markdown
 - [x] Sin favicon en disco (`data:,` + `204` en `/favicon.ico`)
-- [x] Sin overlay visual de drop (drop silencioso; Abrir .md / Abrir PDF)
-- [x] Botón **Descargar .md** (guardar Markdown del editor / post-import PDF)
+- [x] Sin overlay visual de drop (drop silencioso; Abrir Markdown / Abrir PDF)
+- [x] **Generar Markdown** solo en modo PDF; **Generar PDF** solo en modo Markdown
+- [x] Etiquetas: Abrir Markdown · Abrir PDF · Generar Markdown · Generar PDF
 
 ---
 

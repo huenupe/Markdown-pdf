@@ -38,7 +38,7 @@ Detalle: [10-EXTRAS-P1](./10-EXTRAS-P1.md)
 5. [x] Atajos de teclado (`Ctrl+Enter`, etc.) — hecho en Fase 3
 6. [x] Contador de palabras / caracteres / líneas (UI)
 7. [x] **Importar PDF → Markdown** (local, con pérdida) — ver [12-PDF-TO-MD](./12-PDF-TO-MD.md)
-8. [x] **Descargar .md** desde la UI (tras editar o importar PDF)
+8. [x] **Generar Markdown** (descarga `.md`; solo visible tras Abrir PDF)
 9. Exportar también a HTML
 10. Tabla de contenidos automática
 
@@ -69,6 +69,6 @@ Detalle: [10-EXTRAS-P1](./10-EXTRAS-P1.md)
 ## Estado actual
 
 - **Fases 0–6:** completadas
-- **Producto v1 local:** usable vía README
-- **En Development:** import PDF → Markdown ([12-PDF-TO-MD](./12-PDF-TO-MD.md))
+- **Producto local:** usable vía README (`python run.py` → `:8765`)
+- **MD ↔ PDF:** CTAs **Abrir Markdown / Abrir PDF / Generar Markdown / Generar PDF**, modos de layout, Editar/Ver ([05-FRONTEND](./05-FRONTEND.md), [12-PDF-TO-MD](./12-PDF-TO-MD.md))
 - **Backlog abierto:** resto P2/P3 (export HTML, TOC, OCR, CLI, etc.)

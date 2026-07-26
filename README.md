@@ -26,12 +26,12 @@ flowchart LR
 
 ### Paso a paso
 
-1. **Entrada** — Subís un `.md`, lo soltás en la zona del editor, pegás Markdown, o usás **Abrir PDF** (PDF con texto seleccionable).
-2. **Preview** — Con un pequeño debounce, el frontend llama a `POST /api/preview`. El backend parsea Markdown (tablas, código con highlight, frontmatter opcional) y devuelve HTML. La UI lo muestra con la plantilla elegida (Informe / Notas / Técnico).
-3. **PDF** — Al pulsar **Generar PDF** (o `Ctrl+Enter`), se llama a `POST /api/convert`. El mismo HTML se envuelve con CSS de documento y Playwright genera un PDF A4 (con numeración de páginas).
-4. **Descarga** — El navegador guarda el `.pdf`. Por defecto **no** se deja una copia en la carpeta del proyecto (ver `output/` más abajo).
+1. **Entrada** — **Abrir Markdown**, pegás texto, o **Abrir PDF** (PDF con texto seleccionable).
+2. **Preview** — Con debounce, `POST /api/preview` muestra la hoja HTML con la plantilla (Informe / Notas / Técnico).
+3. **Acciones según origen** — Tras **Abrir Markdown**: solo **Generar PDF**. Tras **Abrir PDF**: solo **Generar Markdown**.
+4. **Generar PDF** — `POST /api/convert` → Playwright → descarga `.pdf` (copia en `output/` solo con `SAVE_TO_OUTPUT=1`).
 
-**Importar PDF:** la extracción es local y **con pérdida** (no recupera el Markdown original ni el layout exacto). PDFs escaneados (solo imagen) no están soportados aún (sin OCR). Detalle: [`docs/12-PDF-TO-MD.md`](./docs/12-PDF-TO-MD.md).
+**Abrir PDF:** la extracción es local y **con pérdida**. PDFs escaneados no están soportados (sin OCR). Detalle: [`docs/12-PDF-TO-MD.md`](./docs/12-PDF-TO-MD.md).
 
 Todo el tráfico de la app es `localhost` (`127.0.0.1`). El contenido del documento no se envía a un API cloud de MD-PDF.
 
@@ -103,19 +103,17 @@ Puerto por defecto: **8765** (en algunos Windows el 8000 está bloqueado o reser
 ## Uso en la interfaz
 
 1. Abrí http://127.0.0.1:8765
-2. Pegá Markdown, usá **Abrir .md**, o **Abrir PDF** / arrastrá un archivo
+2. **Abrir Markdown** o **Abrir PDF** (o arrastrá un archivo)
 3. Elegí plantilla: **Informe**, **Notas** o **Técnico**
-4. Usá **Editar / Ver** en el panel Markdown; en modo `.md` la derecha es la vista HTML del documento (“Vista PDF”)
-5. Si abrís un PDF: izquierda = PDF original, derecha = Markdown importado (automático)
-6. **Descargar .md** para guardar el Markdown (p. ej. tras importar un PDF)
-7. **Generar PDF** para descargar el PDF real
+4. Usá **Editar / Ver** en el panel Markdown
+5. **Abrir Markdown** → solo **Generar PDF** · **Abrir PDF** → solo **Generar Markdown**
 
 ### Atajos
 
 | Atajo | Acción |
 |-------|--------|
-| `Ctrl+Enter` / `Cmd+Enter` | Generar PDF |
-| `Ctrl+O` / `Cmd+O` | Abrir archivo |
+| `Ctrl+Enter` / `Cmd+Enter` | Generar PDF (modo Markdown) |
+| `Ctrl+O` / `Cmd+O` | Abrir Markdown |
 
 ### Frontmatter (opcional)
 
@@ -145,10 +143,11 @@ Eso genera una cabecera en el documento (título / autor / fecha) además del cu
 
 ## Qué incluye
 
-- Upload / pegar Markdown → preview HTML → PDF A4
-- Importar PDF → Markdown editable (local, con pérdida); layout PDF | Markdown
-- Toggle **Editar / Ver** en el panel Markdown; paneles compactos con scroll propio
-- UI tipo SaaS (paneles, CTA, contador, estado en footer) sin salir de local
+- **Abrir Markdown** → preview HTML → **Generar PDF** (A4)
+- **Abrir PDF** → Markdown editable (local, con pérdida) → **Generar Markdown**
+- CTAs excluyentes: no se muestra Generar Markdown al abrir un `.md`, ni Generar PDF tras importar un PDF
+- Toggle **Editar / Ver**; paneles compactos con scroll propio
+- UI tipo SaaS (paneles, contador, estado en footer) 100% local
 - Highlight de código, tablas, listas, blockquotes
 - Frontmatter YAML
 - Tres plantillas CSS de documento

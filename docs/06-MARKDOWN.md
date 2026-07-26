@@ -29,6 +29,10 @@ Ver [11-PRIVACIDAD](./11-PRIVACIDAD.md).
 - La UI muestra un aviso si detecta `http://` / `https://` en el texto
 - Recomendado: data URI (como `fixtures/with-images.md`)
 
+## Sentido inverso (PDF → Markdown)
+
+El Markdown también puede **producirse** al importar un PDF (extracción local, con pérdida). Ver [12-PDF-TO-MD](./12-PDF-TO-MD.md). Ese flujo no usa este motor `markdown` hasta que el usuario edita y vuelve a pedir preview/PDF.
+
 ## Limitaciones
 
 | Tema | Comportamiento |
@@ -36,6 +40,7 @@ Ver [11-PRIVACIDAD](./11-PRIVACIDAD.md).
 | HTML embebido en el MD | Evitado / sanitizado |
 | Imágenes relativas (`./img.png`) | No soportadas aún (backlog P3) |
 | Math / Mermaid | No en v1 |
+| Round-trip MD→PDF→MD | No idéntico |
 
 ## Fixtures
 

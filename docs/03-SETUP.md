@@ -93,10 +93,11 @@ El PDF usa Playwright **sync** en un hilo (`asyncio.to_thread`), que es compatib
 ## Verificación
 
 1. `GET http://127.0.0.1:8765/api/health` → `"ok": true` y `"playwright": "ready"`
-2. Abrir la UI → editor + preview + selector de plantilla
-3. Cargar `fixtures/simple.md` → preview OK → Generar PDF
-4. Comprobar archivo en `output/`
-5. Smoke automatizado (servidor arriba):
+2. Abrir la UI → toolbar (**Abrir Markdown** / **Abrir PDF**) + paneles + plantilla
+3. **Abrir Markdown** con `fixtures/simple.md` → preview OK → solo CTA **Generar PDF** → descarga `.pdf`
+4. **Abrir PDF** (un PDF con texto) → layout PDF \| Markdown → solo CTA **Generar Markdown** → descarga `.md`
+5. `output/`: por defecto **no** se escribe nada; solo si `SAVE_TO_OUTPUT=1`
+6. Smoke automatizado (servidor arriba):
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\smoke_test.py
@@ -105,6 +106,8 @@ El PDF usa Playwright **sync** en un hilo (`asyncio.to_thread`), que es compatib
 ```powershell
 .\scripts\render_fixtures.ps1
 ```
+
+Nota: el ejemplo histórico con puerto `8000` más abajo es solo para documentar problemas en Windows; el default actual es **8765**.
 
 ## Variables de entorno (opcionales)
 

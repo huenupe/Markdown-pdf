@@ -119,8 +119,17 @@
   function syncButtons() {
     const hasText = els.editor.value.trim().length > 0;
     const busy = converting || importing;
-    els.btnConvert.disabled = !hasText || busy;
-    if (els.btnDownloadMd) els.btnDownloadMd.disabled = !hasText || busy;
+    const pdfFlow = layoutMode === "pdf";
+
+    // Modo PDF (Abrir PDF): solo Generar Markdown.
+    // Modo MD (Abrir Markdown / pegar): solo Generar PDF.
+    if (els.btnDownloadMd) {
+      els.btnDownloadMd.hidden = !pdfFlow;
+      els.btnDownloadMd.disabled = !pdfFlow || !hasText || busy;
+    }
+    els.btnConvert.hidden = pdfFlow;
+    els.btnConvert.disabled = pdfFlow || !hasText || busy;
+
     els.btnClear.disabled = (!hasText && !sourceFilename && !pdfSourceName) || busy;
     if (els.pdfInput) els.pdfInput.disabled = busy;
     if (els.fileInput) els.fileInput.disabled = busy;
@@ -149,6 +158,7 @@
   }
 
   function downloadMarkdown() {
+    if (layoutMode !== "pdf") return;
     const text = els.editor.value;
     if (!text.trim()) return;
     const blob = new Blob([text], { type: "text/markdown;charset=utf-8" });
@@ -160,7 +170,7 @@
     a.click();
     a.remove();
     URL.revokeObjectURL(url);
-    setStatus(`Markdown listo · ${mdName()}`, "ok");
+    setStatus(`Markdown generado · ${mdName()}`, "ok");
   }
 
   function clearPdfPreview() {
@@ -186,6 +196,7 @@
     els.workspace.dataset.mode = layoutMode;
     els.panePdf.hidden = layoutMode !== "pdf";
     els.paneDoc.hidden = layoutMode !== "md";
+    syncButtons();
   }
 
   function setSourceView(view) {
@@ -307,6 +318,7 @@ ${SHEET_CHROME}
   }
 
   async function convertPdf() {
+    if (layoutMode !== "md") return;
     const markdown = els.editor.value;
     if (!markdown.trim() || converting) return;
 
@@ -490,7 +502,7 @@ ${SHEET_CHROME}
     importPdfFile(file);
   });
 
-  // Drop silencioso (sin overlay): solo Abrir .md / Abrir PDF muestran UI de carga.
+  // Drop silencioso (sin overlay): Abrir Markdown / Abrir PDF.
   ["dragenter", "dragover"].forEach((type) => {
     els.dropzone.addEventListener(type, (e) => {
       e.preventDefault();
