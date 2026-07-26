@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MD-PDF</title>
+    <!-- Sin favicon en disco: data URI vacío evita la petición a /favicon.ico -->
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="top">
+        <div class="brand-block">
+          <h1 class="brand">MD-PDF</h1>
+          <p class="tagline">Markdown ↔ PDF en tu máquina — privado y local.</p>
+        </div>
+      </header>
+
+      <div class="toolbar">
+        <div class="toolbar-left">
+          <label class="btn secondary file-btn">
+            Abrir .md
+            <input
+              id="file-input"
+              type="file"
+              accept=".md,.markdown,.txt,text/markdown,text/plain"
+              hidden
+            />
+          </label>
+          <label class="btn secondary file-btn">
+            Abrir PDF
+            <input
+              id="pdf-input"
+              type="file"
+              accept=".pdf,application/pdf"
+              hidden
+            />
+          </label>
+          <label class="theme-label">
+            Plantilla
+            <select id="theme-select" class="theme-select" aria-label="Plantilla del documento">
+              <option value="informe">Informe</option>
+              <option value="notas">Notas</option>
+              <option value="tecnico">Técnico</option>
+            </select>
+          </label>
+        </div>
+        <div class="toolbar-right">
+          <button type="button" id="btn-clear" class="btn ghost" disabled>Limpiar</button>
+          <button type="button" id="btn-download-md" class="btn secondary" disabled>
+            Descargar .md
+          </button>
+          <button type="button" id="btn-convert" class="btn primary" disabled>Generar PDF</button>
+        </div>
+      </div>
+
+      <p id="privacy-hint" class="privacy-hint" hidden role="status">
+        Este Markdown incluye URLs remotas (<code>http://</code> /
+        <code>https://</code>). Al generar el PDF, Chromium puede
+        <strong>descargarlas desde internet</strong>. Para máxima privacidad usá
+        data URI o evitá recursos externos.
+      </p>
+
+      <p id="import-hint" class="import-hint" hidden role="status"></p>
+
+      <p id="error" class="error" hidden role="alert"></p>
+
+      <div class="workspace" id="workspace" data-mode="md">
+        <section class="pane pane-pdf" id="pane-pdf" hidden aria-label="Vista PDF original">
+          <div class="pane-label">
+            <span>PDF</span>
+            <span id="pdf-label" class="file-label"></span>
+          </div>
+          <iframe id="pdf-frame" class="pdf-frame" title="Vista del PDF importado"></iframe>
+        </section>
+
+        <section
+          class="pane pane-source"
+          id="pane-source"
+          aria-label="Markdown"
+        >
+          <div class="pane-label">
+            <span id="source-title">Markdown</span>
+            <div class="pane-meta">
+              <span id="file-label" class="file-label"></span>
+              <div class="view-toggle" role="group" aria-label="Modo del panel Markdown">
+                <button type="button" id="btn-mode-edit" class="toggle is-active" aria-pressed="true">
+                  Editar
+                </button>
+                <button type="button" id="btn-mode-view" class="toggle" aria-pressed="false">
+                  Ver
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="source-body" id="dropzone">
+            <textarea
+              id="editor"
+              spellcheck="false"
+              placeholder="Pegá o escribí Markdown aquí…&#10;&#10;Opcional al inicio:&#10;---&#10;title: Mi documento&#10;author: Autor&#10;date: 2026-07-24&#10;---"
+            ></textarea>
+            <div id="md-view-scroll" class="md-view-scroll" hidden>
+              <div id="md-view-host" class="preview-host"></div>
+            </div>
+          </div>
+          <div class="editor-bar">
+            <span id="editor-stats" class="editor-stats">0 palabras · 0 caracteres · 0 líneas</span>
+          </div>
+        </section>
+
+        <section class="pane pane-doc" id="pane-doc" aria-label="Vista previa del documento">
+          <div class="pane-label">
+            <span>Vista PDF</span>
+            <span id="preview-state" class="preview-state">vacío</span>
+          </div>
+          <div class="preview-scroll">
+            <div id="preview-host" class="preview-host"></div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="app-footer" aria-live="polite">
+        <span id="status-dot" class="status-dot" aria-hidden="true"></span>
+        <span id="status" class="footer-status">Comprobando API…</span>
+        <span class="footer-meta">Local · 127.0.0.1 · sin cloud</span>
+      </footer>
+    </div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

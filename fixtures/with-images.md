@@ -1,0 +1,11 @@
+# Imágenes
+
+Fixture con imagen embebida (data URI) para no depender de red.
+
+## Diagrama embebido
+
+![Caja MD-PDF](data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MjAiIGhlaWdodD0iMTQwIiB2aWV3Qm94PSIwIDAgNDIwIDE0MCI+PHJlY3Qgd2lkdGg9IjQyMCIgaGVpZ2h0PSIxNDAiIHJ4PSI4IiBmaWxsPSIjZjVmNWYwIiBzdHJva2U9IiNjNGEzNWEiIHN0cm9rZS13aWR0aD0iMiIvPjx0ZXh0IHg9IjIxMCIgeT0iNjQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJTZWdvZSBVSSxBcmlhbCxzYW5zLXNlcmlmIiBmb250LXNpemU9IjI4IiBmb250LXdlaWdodD0iNzAwIiBmaWxsPSIjYzRhMzVhIj5NRC1QREY8L3RleHQ+PHRleHQgeD0iMjEwIiB5PSIxMDAiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtZmFtaWx5PSJHZW9yZ2lhLHNlcmlmIiBmb250LXNpemU9IjE0IiBmaWxsPSIjNDQ0Ij5GaXh0dXJlIGRlIGltYWdlbiAoc3ZnKTwvdGV4dD48L3N2Zz4=)
+
+## Nota
+
+Las imágenes relativas (`./foto.png`) no están soportadas en v1; usar URL absoluta o data URI como arriba.

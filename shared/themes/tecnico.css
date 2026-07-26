@@ -1,0 +1,196 @@
+/* Plantilla: Técnico (denso, énfasis en código) */
+
+@page {
+  size: A4;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.document {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.45;
+  color: #1b1f24;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.document > :first-child {
+  margin-top: 0;
+}
+
+.document .doc-meta {
+  margin: 0 0 1.1em;
+  padding-bottom: 0.6em;
+  border-bottom: 1px solid #3d4f5f;
+  page-break-after: avoid;
+}
+
+.document .doc-title {
+  font-family: "Consolas", "Cascadia Mono", "Courier New", monospace;
+  font-size: 1.45em;
+  font-weight: 700;
+  margin: 0 0 0.25em;
+  border: none;
+  padding: 0;
+  color: #1e2a33;
+  letter-spacing: -0.02em;
+}
+
+.document .doc-byline {
+  margin: 0;
+  font-size: 0.85em;
+  color: #5a6b78;
+  font-family: "Consolas", "Cascadia Mono", monospace;
+}
+
+.document h1,
+.document h2,
+.document h3,
+.document h4 {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #1e2a33;
+  margin: 1.1em 0 0.4em;
+  page-break-after: avoid;
+}
+
+.document h1 {
+  font-size: 1.4em;
+  border-bottom: 1px solid #c5ced6;
+  padding-bottom: 0.2em;
+  margin-top: 0;
+}
+
+.document h2 {
+  font-size: 1.18em;
+  color: #2c3e50;
+}
+
+.document h3 {
+  font-size: 1.05em;
+  font-family: "Consolas", "Cascadia Mono", monospace;
+}
+
+.document p {
+  margin: 0.45em 0;
+}
+
+.document a {
+  color: #1f5f8b;
+  text-decoration: none;
+  border-bottom: 1px solid #8eb4cc;
+}
+
+.document ul,
+.document ol {
+  margin: 0.45em 0;
+  padding-left: 1.35em;
+}
+
+.document blockquote {
+  margin: 0.75em 0;
+  padding: 0.3em 0 0.3em 0.85em;
+  border-left: 3px solid #3d4f5f;
+  color: #3a4550;
+  background: #f4f6f8;
+  page-break-inside: avoid;
+  font-size: 0.95em;
+}
+
+.document pre,
+.document .highlight {
+  background: #1e2430;
+  color: #e6edf3;
+  border: 1px solid #2d3744;
+  border-radius: 2px;
+  padding: 0.65em 0.8em;
+  font-family: "Consolas", "Cascadia Mono", "Courier New", monospace;
+  font-size: 0.84em;
+  line-height: 1.4;
+  page-break-inside: avoid;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0.75em 0;
+}
+
+.document .highlight pre {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: inherit;
+}
+
+/* En tema oscuro, los tokens de Pygments claros se leen mejor con fondo oscuro;
+   forzamos color de texto base del bloque */
+.document .highlight {
+  color: #e6edf3;
+}
+
+.document code {
+  font-family: "Consolas", "Cascadia Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  background: #eef1f4;
+  padding: 0.05em 0.25em;
+  border-radius: 2px;
+  color: #1e2a33;
+}
+
+.document pre code,
+.document .highlight code {
+  background: transparent;
+  padding: 0;
+  color: inherit;
+}
+
+.document table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.75em 0;
+  font-size: 0.92em;
+  page-break-inside: avoid;
+}
+
+.document th,
+.document td {
+  border: 1px solid #b8c2cc;
+  padding: 0.35em 0.55em;
+  text-align: left;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+.document th {
+  background: #e8eef3;
+  font-weight: 700;
+  font-family: "Consolas", "Cascadia Mono", monospace;
+  font-size: 0.9em;
+}
+
+.document tr:nth-child(even) td {
+  background: #f7f9fb;
+}
+
+.document img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.75em 0;
+  page-break-inside: avoid;
+}
+
+.document hr {
+  border: none;
+  border-top: 1px solid #b8c2cc;
+  margin: 1.1em 0;
+}

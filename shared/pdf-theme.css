@@ -1,0 +1,201 @@
+/* Plantilla: Informe (default formal) */
+
+@page {
+  size: A4;
+}
+
+html {
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+}
+
+.document {
+  font-family: "Georgia", "Times New Roman", "Liberation Serif", serif;
+  font-size: 11pt;
+  line-height: 1.55;
+  color: #1a1a1a;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.document > :first-child {
+  margin-top: 0;
+}
+
+.document .doc-meta {
+  margin: 0 0 1.4em;
+  padding-bottom: 0.85em;
+  border-bottom: 2px solid #2c3e35;
+  page-break-after: avoid;
+}
+
+.document .doc-title {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.85em;
+  font-weight: 700;
+  margin: 0 0 0.35em;
+  border: none;
+  padding: 0;
+  color: #152018;
+}
+
+.document .doc-byline {
+  margin: 0;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-size: 0.95em;
+  color: #5a6a60;
+}
+
+.document h1,
+.document h2,
+.document h3,
+.document h4,
+.document h5,
+.document h6 {
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 650;
+  line-height: 1.25;
+  color: #121212;
+  margin: 1.25em 0 0.45em;
+  page-break-after: avoid;
+  break-after: avoid;
+}
+
+.document h1 {
+  font-size: 1.7em;
+  border-bottom: 1px solid #d0d0d0;
+  padding-bottom: 0.25em;
+  margin-top: 0;
+}
+
+.document h2 {
+  font-size: 1.32em;
+}
+
+.document h3 {
+  font-size: 1.12em;
+}
+
+.document h4 {
+  font-size: 1em;
+  font-weight: 600;
+}
+
+.document p {
+  margin: 0.55em 0;
+  orphans: 3;
+  widows: 3;
+}
+
+.document a {
+  color: #1a4f7a;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.document ul,
+.document ol {
+  margin: 0.55em 0;
+  padding-left: 1.5em;
+}
+
+.document li {
+  margin: 0.2em 0;
+}
+
+.document blockquote {
+  margin: 0.9em 0;
+  padding: 0.35em 0 0.35em 1em;
+  border-left: 3px solid #b8b8b8;
+  color: #3a3a3a;
+  background: #fafafa;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.document pre,
+.document .highlight {
+  background: #f3f3f3;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 0.7em 0.9em;
+  overflow-x: auto;
+  font-family: "Consolas", "Cascadia Mono", "Courier New", monospace;
+  font-size: 0.88em;
+  line-height: 1.45;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0.85em 0;
+}
+
+.document .highlight pre {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+}
+
+.document code {
+  font-family: "Consolas", "Cascadia Mono", "Courier New", monospace;
+  font-size: 0.9em;
+  background: #f0f0f0;
+  padding: 0.08em 0.28em;
+  border-radius: 2px;
+}
+
+.document pre code,
+.document .highlight code {
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+}
+
+.document table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0.9em 0;
+  font-size: 0.95em;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.document th,
+.document td {
+  border: 1px solid #c8c8c8;
+  padding: 0.4em 0.65em;
+  text-align: left;
+  vertical-align: top;
+}
+
+.document th {
+  background: #ececec;
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  font-weight: 600;
+}
+
+.document tr:nth-child(even) td {
+  background: #fafafa;
+}
+
+.document img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0.85em 0;
+  page-break-inside: avoid;
+  break-inside: avoid;
+}
+
+.document hr {
+  border: none;
+  border-top: 1px solid #ccc;
+  margin: 1.4em 0;
+}
