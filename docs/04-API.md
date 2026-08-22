@@ -93,13 +93,13 @@ Genera un PDF a partir de Markdown en el body.
 ```
 
 - `markdown` (requerido): string
-- `filename` (opcional): nombre sugerido; se usa para el `Content-Disposition` (`.pdf`)
+- `filename` (opcional): nombre sugerido; se usa para el `Content-Disposition` (`.pdf`). Puede incluir Unicode/emojis: el header usa `filename` ASCII de respaldo y `filename*` UTF-8 (RFC 6266).
 - `theme` (opcional): `informe` | `notas` | `tecnico`
 
 **Response 200**
 
 - `Content-Type: application/pdf`
-- `Content-Disposition: attachment; filename="notas.pdf"`
+- `Content-Disposition: attachment; filename="notas.pdf"` (si hay emojis: también `filename*=UTF-8''…`)
 - Body: binario PDF
 - `X-Saved-Path` (solo si `SAVE_TO_OUTPUT=1`): ruta en `output/`
 

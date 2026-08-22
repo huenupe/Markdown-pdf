@@ -150,6 +150,7 @@ Docs: [05-FRONTEND](./05-FRONTEND.md)
 - [x] Sin overlay visual de drop (drop silencioso; Abrir Markdown / Abrir PDF)
 - [x] **Generar Markdown** solo en modo PDF; **Generar PDF** solo en modo Markdown
 - [x] Etiquetas: Abrir Markdown · Abrir PDF · Generar Markdown · Generar PDF
+- [x] Descarga PDF: `filename` ASCII + `filename*` UTF-8 (emojis no rompen el header)
 
 ---
 

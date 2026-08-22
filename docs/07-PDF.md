@@ -16,7 +16,7 @@ Generar un PDF **A4** legible y predecible a partir del HTML producido por `mark
    - lanzar browser (reutilizar instancia con lock)
    - `page.set_content(full_html, wait_until="networkidle")`
    - `page.pdf(**opciones)`
-5. Devolver `bytes` al cliente (descarga en el navegador). Copia en `output/` **solo** si `SAVE_TO_OUTPUT=1`
+5. Devolver `bytes` al cliente (descarga en el navegador). Copia en `output/` **solo** si `SAVE_TO_OUTPUT=1`. El nombre de archivo puede tener Unicode/emojis: `Content-Disposition` usa `filename` ASCII de respaldo y `filename*` UTF-8 (RFC 6266) para no romper headers latin-1.
 
 ## Opciones Playwright previstas
 

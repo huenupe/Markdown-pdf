@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
+from urllib.parse import quote
 
 from fastapi import APIRouter, File, Form, HTTPException, UploadFile
 from fastapi.responses import Response
@@ -41,11 +43,36 @@ def _ensure_size(text: str) -> None:
         raise HTTPException(status_code=413, detail="El contenido supera el límite de 2 MB.")
 
 
-def _pdf_filename(name: str | None) -> str:
+_UNSAFE_FILENAME = re.compile(r'[\x00-\x1f\x7f<>:"/\\|?*]')
+_ASCII_FILENAME = re.compile(r"[^A-Za-z0-9._-]+")
+
+
+def _filename_stem(name: str | None) -> str:
     if not name or not name.strip():
-        return "documento.pdf"
-    base = Path(name.strip()).stem or "documento"
-    return f"{base}.pdf"
+        return "documento"
+    stem = Path(name.strip()).stem.strip() or "documento"
+    stem = _UNSAFE_FILENAME.sub("_", stem).strip(" .")
+    return stem or "documento"
+
+
+def _ascii_filename(stem: str, suffix: str) -> str:
+    ascii_stem = stem.encode("ascii", "ignore").decode("ascii")
+    ascii_stem = _ASCII_FILENAME.sub("_", ascii_stem).strip("._")
+    return f"{ascii_stem or 'documento'}{suffix}"
+
+
+def _pdf_download_names(name: str | None) -> tuple[str, str]:
+    """Nombre UTF-8 (emojis OK) y fallback ASCII para headers HTTP."""
+    stem = _filename_stem(name)
+    utf8_name = f"{stem}.pdf"
+    return utf8_name, _ascii_filename(stem, ".pdf")
+
+
+def _content_disposition(utf8_name: str, ascii_name: str) -> str:
+    """RFC 6266: filename ASCII + filename* UTF-8 (emojis en la descarga)."""
+    ascii_safe = ascii_name.replace("\\", "_").replace('"', "")
+    encoded = quote(utf8_name, safe="")
+    return f"attachment; filename=\"{ascii_safe}\"; filename*=UTF-8''{encoded}"
 
 
 async def _make_pdf(markdown: str, filename: str | None, theme: str | None) -> Response:
@@ -65,11 +92,12 @@ async def _make_pdf(markdown: str, filename: str | None, theme: str | None) -> R
     except Exception as exc:  # noqa: BLE001
         raise HTTPException(status_code=500, detail=f"Error al generar PDF: {exc}") from exc
 
-    out_name = _pdf_filename(filename)
-    headers = {"Content-Disposition": f'attachment; filename="{out_name}"'}
+    utf8_name, ascii_name = _pdf_download_names(filename)
+    headers = {"Content-Disposition": _content_disposition(utf8_name, ascii_name)}
     if SAVE_TO_OUTPUT:
-        saved = pdf_service.save_to_output(pdf_bytes, out_name)
-        headers["X-Saved-Path"] = str(saved.as_posix())
+        saved = pdf_service.save_to_output(pdf_bytes, utf8_name)
+        # Header HTTP = latin-1; percent-encode por si el path tiene emojis.
+        headers["X-Saved-Path"] = quote(str(saved.as_posix()), safe="/:")
 
     return Response(
         content=pdf_bytes,
